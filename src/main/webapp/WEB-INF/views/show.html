@@ -1,25 +1,42 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>show</title>
+  <meta charset="UTF-8">
+  <title>Show contact info</title>
+  <link rel="stylesheet" th:href="@{/resources/css/style.css}">
 </head>
 <body>
-<strong>User information:</strong>
-<ul>
-    <li>
-        <p th:text="${'ID: ' + person.getId()}">VALUE</p>
-    </li>
-    <li>
-        <p th:text="${'First Name: ' + person.getFirstName()}">VALUE</p>
-    </li>
-    <li>
-        <p th:text="${'Last Name: ' + person.getLastName()}">VALUE</p>
-    </li>
-    <li>
-        <p th:text="${'Phone Number: ' + person.getPhone()}">VALUE</p>
-    </li>
+
+<div class="header-h1">
+  <h1>Информация о сотруднике</h1>
+</div>
+
+<ul class="list">
+  <li>
+    <p th:text="${'ID: ' + person.getId()}">VALUE</p>
+  </li>
+  <li>
+    <p th:text="${'Имя: ' + person.getFirstName()}">VALUE</p>
+  </li>
+  <li>
+    <p th:text="${'Фамилия: ' + person.getLastName()}">VALUE</p>
+  </li>
+  <li>
+    <p th:text="${'Номер телефона: ' + person.getPhone()}">VALUE</p>
+  </li>
 </ul>
-<a href="/mankoff/contacts"> Return </a>
+
+<div class="container">
+  <div class="center">
+    <button class="btn" onclick="document.location='/mankoff/contacts'">
+      <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+        <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line"/>
+        <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line"/>
+      </svg>
+      <span>Вернуться</span>
+    </button>
+  </div>
+</div>
+
 </body>
 </html>

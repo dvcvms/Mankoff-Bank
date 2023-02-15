@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>all contacts</title>
+  <meta charset="UTF-8">
+  <title>All contacts</title>
+  <link rel="stylesheet" th:href="@{/resources/css/style.css}">
 </head>
 <body>
-<div th:each="person : ${people}">
-    <a th:href="@{/mankoff/contacts/{id}(id=${person.getId()})}"
-       th:text="${person.getFirstName() + '  ' + person.getLastName()}"> PERSON </a>
+
+<div class="header-h1">
+  <h1>Сотрудники</h1>
 </div>
+
+<ul class="list">
+  <div th:each="person : ${people}">
+    <li>
+      <a th:href="@{/mankoff/contacts/{id}(id=${person.getId()})}" th:text="${person.getFirstName() + '  ' + person.getLastName()}"> PERSON </a>
+    </li>
+  </div>
+</ul>
+
 </body>
 </html>

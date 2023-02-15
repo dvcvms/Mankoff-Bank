@@ -25,7 +25,7 @@ public class DebtCalculator {
     @Value("${currency.RUB}")
     private Double currencyUSDtoRUB;
     @Value("${app.loan_coefficient}")
-    private Double loan_coefficient;
+    private Double loanCoefficient;
     public double creditCheck(long id, String mode){
         val credits = creditRepository.findAllByUserId(id);
         val creditSum = credits.stream().mapToDouble(Credit::getAmount).sum();
@@ -59,7 +59,7 @@ public class DebtCalculator {
     public List<User> usersWithCreditMoreThanDebit(){
         val allUsers =  userRepository.findAll();
         return allUsers.stream().filter(user ->
-             creditCheck(user.getId(), "RUB")*loan_coefficient > debitCheck(user.getId(), "RUB")
+             creditCheck(user.getId(), "RUB")* loanCoefficient > debitCheck(user.getId(), "RUB")
         ).collect(Collectors.toList());
     }
 }

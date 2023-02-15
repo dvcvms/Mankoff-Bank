@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.evsmanko.mankoff.configuration.TotalBalance;
+import ru.evsmanko.mankoff.model.TotalBalance;
 import ru.evsmanko.mankoff.entity.User;
 import ru.evsmanko.mankoff.service.BalanceService;
 

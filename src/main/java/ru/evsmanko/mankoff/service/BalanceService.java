@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import ru.evsmanko.mankoff.entity.Credit;
 import ru.evsmanko.mankoff.entity.Debit;
 import ru.evsmanko.mankoff.entity.User;
+import ru.evsmanko.mankoff.model.UserWithBalance;
 import ru.evsmanko.mankoff.repository.CreditRepository;
 import ru.evsmanko.mankoff.repository.DebitRepository;
 import ru.evsmanko.mankoff.repository.UserRepository;
@@ -45,13 +46,25 @@ public class BalanceService {
         return debits.stream().mapToDouble(Debit::getAmount).sum();
     }
 
-    public List<User> usersWithCreditMoreThanDebit() {
-        val users = userRepo.findAll();
+    private double userDebits(User u) {
+        return debitRepo.findAllByUserId(u.getId()).stream().mapToDouble(Debit::getAmount).sum();
+    }
 
-        return users.stream().filter(u -> {
-            val d = debitRepo.findAllByUserId(u.getId()).stream().mapToDouble(Debit::getAmount).sum();
-            val c = creditRepo.findAllByUserId(u.getId()).stream().mapToDouble(Credit::getAmount).sum();
-            return c > d * loanCoefficient;
-        }).toList();
+    private double userCredits(User u) {
+        return creditRepo.findAllByUserId(u.getId()).stream().mapToDouble(Credit::getAmount).sum();
+    }
+
+    public List<UserWithBalance> usersBalances() {
+        return userRepo.findAll()
+                .stream()
+                .map(u -> new UserWithBalance(u, userDebits(u) - userCredits(u)))
+                .toList();
+    }
+
+    public List<User> usersWithCreditMoreThanDebit() {
+        return userRepo.findAll()
+                .stream()
+                .filter(u -> userCredits(u) > userDebits(u) * loanCoefficient)
+                .toList();
     }
 }

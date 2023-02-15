@@ -18,4 +18,3 @@ public class DispatcherServletConfiguration extends AbstractAnnotationConfigDisp
         return new String[]{"/"};
     }
 }
-
