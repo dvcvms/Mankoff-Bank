@@ -14,7 +14,7 @@ import ru.evsmanko.mankoff.service.BalanceService;
 public class BankInfoController {
 
     private final UserRepository userRepository;
-    private BalanceService balanceService;
+    private final BalanceService balanceService;
 
     @Autowired
     public BankInfoController(UserRepository userRepository, BalanceService balanceService) {
