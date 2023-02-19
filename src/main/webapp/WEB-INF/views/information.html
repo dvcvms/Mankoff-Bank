@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bank Info</title>
+    <link rel="stylesheet" th:href="@{/resources/styles/style.css}">
+</head>
+
+<body>
+<h1>Mankoff Bank </h1>
+<!-- Комментарий -->
+<p><span class = "name">Mankoff Bank </span> - системообразующий универсальный российский банк, один из лидеров рынка финансовых услуг. </p>
+
+<p>
+    Почему вы должны выбрать наш банк?</p>
+
+<ul> <!-- changed to list in the tutorial -->
+    <li>надежность</li>
+    <li>успешность</li>
+    <li>безопасность</li>
+</ul>
+
+<p>Количество клиентов: 190453 </p>
+<p>Количество кредитованных: 5940 </p>
+<p th:text="${'Денежный оборот(RUB): ' + balance.totalBalance()}">VALUE</p>
+
+<p>Прочитайте <a href="https://www.mtsbank.ru/">MTS BANK</a> чтобы узнать подробнее.</p>
+</body>
+</html>

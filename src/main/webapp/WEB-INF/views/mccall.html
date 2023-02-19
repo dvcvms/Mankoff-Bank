@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>MCC Code</title>
+  <link rel="stylesheet" th:href="@{/resources/styles/style.css}">
+</head>
+<body>
+    <div th:switch="${mccCodes}">
+      <h2 th:case="null">Нет информации</h2>
+        <div id="header">
+          <h1 id="title">Information about MCC code</h1>
+        </div>
+        <table class="table" >
+          <thead>
+          <tr>
+            <th>MCC Code</th>
+            <th>Mcc Name</th>
+            <th>Description</th>
+            <th>CashBack</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="mccCode: ${mccCodes}">
+            <td th:text="${mccCode.getMccCode()}" />
+            <td th:text="${mccCode.getMccName()}" />
+            <td th:text="${mccCode.getMccCodeDescription()}" />
+            <td th:text="${mccCode.getCashbackPer()}"></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</body>
+</html>
