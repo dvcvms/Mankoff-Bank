@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователь</title>
+    <link rel="stylesheet" th:href="@{/resources/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container">
+    <h1 class="h2 mt-5 mb-4">Пользователь</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Поле</th>
+                <th>Значение</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td th:text="ID"></td>
+                <td th:text="${userEntity.getId()}"></td>
+            </tr>
+            <tr>
+                <td th:text="Имя"></td>
+                <td th:text="${userEntity.getFirstName()}"></td>
+            </tr>
+            <tr>
+                <td th:text="Фамилия"></td>
+                <td th:text="${userEntity.getLastName()}"></td>
+            </tr>
+            <tr>
+                <td th:text="Возраст"></td>
+                <td th:text="${userEntity.getAge()}"></td>
+            </tr>
+            <tr>
+                <td th:text="Город"></td>
+                <td th:text="${userEntity.getCity()}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
