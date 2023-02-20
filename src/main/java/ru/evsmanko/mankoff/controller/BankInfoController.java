@@ -16,7 +16,7 @@ import java.util.List;
 public class BankInfoController {
 
     private final UserRepository userRepository;
-    private BalanceService balanceService;
+    private final BalanceService balanceService;
 
     @Autowired
     MccRepository mccRep;
