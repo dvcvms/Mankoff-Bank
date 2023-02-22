@@ -16,9 +16,10 @@ import lombok.Setter;
 public class MCCInfoEntity {
 
     @Id
-    private Long mccCode;
+    private Long id;
 
+    private Long mccCode;
     private String mccName;
     private String mccCodeDescription;
-    private int cashbackPer;
+    private int cashbackPercent;
 }

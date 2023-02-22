@@ -1,5 +1,6 @@
 package ru.evsmanko.mankoff.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,24 +9,22 @@ import ru.evsmanko.mankoff.entity.MCCInfoEntity;
 import ru.evsmanko.mankoff.repository.MccRepository;
 import ru.evsmanko.mankoff.repository.UserRepository;
 import ru.evsmanko.mankoff.service.BalanceService;
+import ru.evsmanko.mankoff.service.MccService;
 
 import java.util.List;
 
 @Controller
 @RequestMapping("/mankoff")
+@RequiredArgsConstructor
 public class BankInfoController {
 
     private final UserRepository userRepository;
     private final BalanceService balanceService;
+    private final MccService mccService;
 
     @Autowired
-    MccRepository mccRep;
+    private final MccRepository mccRep;
 
-    @Autowired
-    public BankInfoController(UserRepository userRepository, BalanceService balanceService) {
-        this.userRepository = userRepository;
-        this.balanceService = balanceService;
-    }
 
     @GetMapping("/contacts")
     public String getContactForm(Model model) {
@@ -49,8 +48,7 @@ public class BankInfoController {
 
     @GetMapping("/mcc-all")
     public String allMcc(Model model) {
-        List<MCCInfoEntity> mccCodes = mccRep.findAll();
-        model.addAttribute("mccCodes", mccCodes);
+        model.addAttribute("mccCodes", mccService.mccEntities());
         return "mccall";
     }
 
