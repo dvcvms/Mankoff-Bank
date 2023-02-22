@@ -12,6 +12,7 @@ import ru.evsmanko.mankoff.service.BalanceService;
 import ru.evsmanko.mankoff.service.MccService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/mankoff")
@@ -54,7 +55,10 @@ public class BankInfoController {
 
     @PostMapping("/mcc")
     public String saveMccByCode(@RequestBody MCCInfoEntity mcc, Model model) {
-        model.addAttribute("mcc", mccRep.save(mcc));
+        Optional<MCCInfoEntity> mccEntity = mccRep.save(mcc);
+        if (mccEntity.isEmpty())
+            return null;
+
         return "mccall";
     }
 
