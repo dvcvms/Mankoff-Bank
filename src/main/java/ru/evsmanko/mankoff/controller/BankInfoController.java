@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.evsmanko.mankoff.dto.MccDto;
 import ru.evsmanko.mankoff.entity.MCCInfoEntity;
 import ru.evsmanko.mankoff.repository.MccRepository;
 import ru.evsmanko.mankoff.repository.UserRepository;
@@ -54,7 +55,7 @@ public class BankInfoController {
     }
 
     @PostMapping("/mcc")
-    public String saveMccByCode(@RequestBody MCCInfoEntity mcc, Model model) {
+    public String saveMccByCode(@RequestBody MccDto mcc, Model model) {
         Optional<MCCInfoEntity> mccEntity = mccRep.save(mcc);
         if (mccEntity.isEmpty())
             return null;

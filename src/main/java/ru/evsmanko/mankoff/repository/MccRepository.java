@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import ru.evsmanko.mankoff.dto.MccDto;
 import ru.evsmanko.mankoff.entity.MCCInfoEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -52,7 +53,7 @@ public class MccRepository {
         return result.size() > 0 ? Optional.of(result.get(0)) : Optional.empty();
     }
 
-    public Optional<MCCInfoEntity> save(MCCInfoEntity mcc) {
+    public Optional<MCCInfoEntity> save(MccDto mcc) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         int affectedRowNumber = jdbcTemplate.update(new PreparedStatementCreator() {
@@ -74,6 +75,11 @@ public class MccRepository {
             return Optional.empty();
         }
 
-        return this.getMccEntityById(keyHolder.getKey().longValue());
+        Optional<MCCInfoEntity> mccEntity = this.getMccEntityById(keyHolder.getKey().longValue());
+        if (mccEntity == null) {
+            return Optional.empty();
+        }
+
+        return mccEntity;
     }
 }
