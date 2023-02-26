@@ -15,13 +15,8 @@ import ru.evsmanko.mankoff.utils.FormattingUtils;
 @Controller
 @RequiredArgsConstructor
 public class AccountController {
-    @Autowired
     BalanceService balanceService;
-
-    @Autowired
     FormattingUtils formattingUtils;
-
-    @Autowired
     UserEntityRepository userEntityRepository;
 
     private final UserRepository userRepository;

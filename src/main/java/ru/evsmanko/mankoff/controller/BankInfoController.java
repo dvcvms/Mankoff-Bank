@@ -24,9 +24,6 @@ public class BankInfoController {
     private final BalanceService balanceService;
     private final MccService mccService;
 
-    @Autowired
-    private final MccRepository mccRep;
-
 
     @GetMapping("/contacts")
     public String getContactForm(Model model) {
@@ -47,7 +44,6 @@ public class BankInfoController {
         return "show";
     }
 
-
     @GetMapping("/mcc-all")
     public String allMcc(Model model) {
         model.addAttribute("mccCodes", mccService.mccEntities());
@@ -56,9 +52,7 @@ public class BankInfoController {
 
     @PostMapping("/mcc")
     public String saveMccByCode(@RequestBody MccDto mcc, Model model) {
-        Optional<MCCInfoEntity> mccEntity = mccRep.save(mcc);
-        if (mccEntity.isEmpty())
-            return null;
+        mccService.save(mcc);
 
         return "mccall";
     }

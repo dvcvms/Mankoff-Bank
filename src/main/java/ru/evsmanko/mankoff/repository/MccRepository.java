@@ -1,6 +1,7 @@
 package ru.evsmanko.mankoff.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -53,7 +54,7 @@ public class MccRepository {
         return result.size() > 0 ? Optional.of(result.get(0)) : Optional.empty();
     }
 
-    public Optional<MCCInfoEntity> save(MccDto mcc) {
+    public Optional<MCCInfoEntity> save(MCCInfoEntity mcc) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
 
         int affectedRowNumber = jdbcTemplate.update(new PreparedStatementCreator() {
