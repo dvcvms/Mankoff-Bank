@@ -22,7 +22,6 @@ public class BankInfoController {
     private final BalanceService balanceService;
     private final MccService mccService;
 
-    @Autowired
     private final MccRepository mccRep;
 
 
@@ -55,6 +54,7 @@ public class BankInfoController {
     @PostMapping("/mcc")
     public String saveMccByCode(@RequestBody MCCInfoEntity mcc, Model model) {
         model.addAttribute("mcc", mccRep.save(mcc));
+
         return "mccall";
     }
 

@@ -19,10 +19,7 @@ public class MccService {
     public List<MccDto> mccEntities() {
         return mccRepo.findAll()
                 .stream()
-                .map(u -> {
-                    MccDto dto = mccConverter.convertToDto(u);
-                    return dto;
-                })
+                .map(u -> mccConverter.convertToDto(u))
                 .toList();
     }
 }
