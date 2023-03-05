@@ -75,10 +75,11 @@ public class MccRepository {
             return Optional.empty();
         }
 
-        Optional<MCCInfoEntity> mccEntity = this.getMccEntityById(keyHolder.getKey().longValue());
-        if (mccEntity == null) {
+        Number key = keyHolder.getKey();
+        if (key == null) {
             return Optional.empty();
         }
+        Optional<MCCInfoEntity> mccEntity = this.getMccEntityById(key.longValue());
 
         return mccEntity;
     }
