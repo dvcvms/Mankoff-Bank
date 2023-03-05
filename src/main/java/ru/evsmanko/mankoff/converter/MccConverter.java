@@ -16,4 +16,8 @@ public class MccConverter {
     public MccDto convertToDto(MCCInfoEntity mcc) {
         return modelMapper.map(mcc, MccDto.class);
     }
+
+    public MCCInfoEntity convertToEntity(MccDto mcc){
+        return modelMapper.map(mcc, MCCInfoEntity.class);
+    }
 }

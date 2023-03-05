@@ -22,4 +22,8 @@ public class MccService {
                 .map(u -> mccConverter.convertToDto(u))
                 .toList();
     }
+
+    public MccDto save(MccDto mcc) {
+        return mccConverter.convertToDto(mccRepo.save(mccConverter.convertToEntity(mcc)));
+    }
 }

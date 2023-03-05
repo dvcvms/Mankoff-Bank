@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.evsmanko.mankoff.dto.MccDto;
 import ru.evsmanko.mankoff.entity.MCCInfoEntity;
 import ru.evsmanko.mankoff.repository.MccRepository;
 import ru.evsmanko.mankoff.repository.UserRepository;
@@ -12,6 +13,7 @@ import ru.evsmanko.mankoff.service.BalanceService;
 import ru.evsmanko.mankoff.service.MccService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/mankoff")
@@ -52,8 +54,8 @@ public class BankInfoController {
     }
 
     @PostMapping("/mcc")
-    public String saveMccByCode(@RequestBody MCCInfoEntity mcc, Model model) {
-        model.addAttribute("mcc", mccRep.save(mcc));
+    public String saveMccByCode(@RequestBody MccDto mcc, Model model) {
+        MccDto mccEntity = mccService.save(mcc);
 
         return "mccall";
     }
